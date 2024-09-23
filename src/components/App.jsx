@@ -18,18 +18,26 @@ function App() {
     slogan:"",
     repo:"",
     demo:"",
-    tech:"",
+    technologies:"",
     desc:"",
     autor:"",
     job:"",
     image:"",
     photo:"",
   })
+
+  const [url, setUrl] = useState("")
+
+
+
   // esta funcion modifica la imagen y la foto. Para ello ponemos la prop key entre [] y así modificamos tanto la img como la foto
   const updateAvatar = (key, value) => {
     setForm({...form, [key]:value});
   };
-  
+  // const getUrl = (value) => {
+  //   setUrl(value)
+  // }
+
 // este es un evento que pasaremos por prop al componente de Form
   const changeForm = (id, value)=>{
     console.log(id);
@@ -42,7 +50,7 @@ function App() {
     } else if (id === 'demo'){
       setForm({...form,demo:value});
     } else if (id === 'technologies'){
-      setForm({...form,tech:value});
+      setForm({...form,technologies:value});
     } else if (id === 'desc'){
       setForm({...form,desc:value});
     } else if (id === 'autor'){
@@ -62,7 +70,12 @@ function App() {
           <SectionProject />
           <Card form={form}/>
           {/*<Form />*/} 
-          <Form changeForm={changeForm} updateAvatar={updateAvatar}/>
+          <Form 
+          changeForm={changeForm} 
+          updateAvatar={updateAvatar}
+          form={form}
+          setUrl={setUrl}
+          url={url}/>
         </main> 
       } />
     </Routes>

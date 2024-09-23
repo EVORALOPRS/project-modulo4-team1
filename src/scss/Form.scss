@@ -81,5 +81,15 @@
   }
   
 
-  
+  .addForm .addForm__project{
+    margin: 8px;
+    padding: 5px 18px;
+    color: var(--color-white);
+    font: var(--font-button);
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 40px;
+    background-image: linear-gradient(to right, var(--color-dark-lilac) -2%, #c0b7e8 98%); 
+  }
   

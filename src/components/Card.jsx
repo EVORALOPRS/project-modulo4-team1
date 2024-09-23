@@ -28,7 +28,7 @@ function Card({form}){
             <p className="card__description">{form.desc ||'Lorem ipsum dolor sit amet, consectetu adipiscing elit. Amet faucibus commodo tellus lectus lobortis. Ultricies lacus, facilisis arcu ac mauris, laoreet sit.'}</p>
 
             <div className="card__technicalInfo">
-              <p className="card__technologies">{form.tech || 'React JS - HTML- CSS'}</p>
+              <p className="card__technologies">{form.technologies || 'React JS - HTML- CSS'}</p>
           
               <a className="icon" href={form.demo} title="Haz click para ver el proyecto online">
               <i className="fa-solid fa-globe emoji"></i>
