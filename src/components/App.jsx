@@ -8,6 +8,7 @@ import Form from './Form';
 import { useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import Landing from './Landing';
+import autor from '../images/avatar.webp'
 
 
 
@@ -24,6 +25,18 @@ function App() {
     job:"",
     image:"",
     photo:"",
+  })
+
+  const [fake, setFake] = ({
+    name:"Elegant Workspace",
+    slogan:"Diseños Exclusivos",
+    repo:"",
+    demo:"",
+    technologies:"React JS - HTML- CSS",
+    desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
+    autor:"Emmelie Björklund",
+    job:"Full Stack Developer",
+    photo: autor,
   })
 
   const [url, setUrl] = useState("")
@@ -64,7 +77,7 @@ function App() {
     <div className="container">
       <Header /> 
     <Routes>
-      <Route path="/" element={<Landing />}/>
+      <Route path="/" element={<Landing fake={fake}/>}/>
       <Route path="/create" element={
         <main className="main">
           <SectionProject />
