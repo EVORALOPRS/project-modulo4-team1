@@ -27,7 +27,8 @@ function App() {
     photo:"",
   })
 
-  const [fake, setFake] = ({
+  const fake = [
+    {
     name:"Elegant Workspace",
     slogan:"Diseños Exclusivos",
     repo:"",
@@ -37,7 +38,43 @@ function App() {
     autor:"Emmelie Björklund",
     job:"Full Stack Developer",
     photo: autor,
-  })
+    },
+    {
+      name:"Elegant Workspace",
+      slogan:"Diseños Exclusivos",
+      repo:"",
+      demo:"",
+      technologies:"React JS - HTML- CSS",
+      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
+      autor:"Emmelie Björklund",
+      job:"Full Stack Developer",
+      photo: autor,
+    },
+    {
+      name:"Elegant Workspace",
+      slogan:"Diseños Exclusivos",
+      repo:"",
+      demo:"",
+      technologies:"React JS - HTML- CSS",
+      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
+      autor:"Emmelie Björklund",
+      job:"Full Stack Developer",
+      photo: autor,
+    },
+    {
+      name:"Elegant Workspace",
+      slogan:"Diseños Exclusivos",
+      repo:"",
+      demo:"",
+      technologies:"React JS - HTML- CSS",
+      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
+      autor:"Emmelie Björklund",
+      job:"Full Stack Developer",
+      photo: autor,
+    }
+  ];
+    
+
 
   const [url, setUrl] = useState("")
 
@@ -81,8 +118,7 @@ function App() {
       <Route path="/create" element={
         <main className="main">
           <SectionProject />
-          <Card form={form}/>
-          {/*<Form />*/} 
+          <Card data={form}/>
           <Form 
           changeForm={changeForm} 
           updateAvatar={updateAvatar}
