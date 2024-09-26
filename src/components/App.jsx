@@ -71,7 +71,8 @@ function App() {
       autor:"Emmelie Björklund",
       job:"Full Stack Developer",
       photo: autor,
-    }
+    },
+   
   ];
     
 

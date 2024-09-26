@@ -20,3 +20,18 @@
 .button--large:hover {
     border-color: var(--color-white);
   }
+
+.button-div{
+  display: flex;
+
+}
+.div-img{
+  display: flex;
+  justify-content: center;
+}
+.div-save{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+  

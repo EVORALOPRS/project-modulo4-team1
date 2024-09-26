@@ -44,11 +44,15 @@ function Form({changeForm, updateAvatar,form, setUrl, url}) {
         </fieldset>
     
         <fieldset className="addForm__group--upload">
-          <ButtonImage  text="Subir foto del proyecto" id="photo" updateAvatar={updateAvatar} />
-          <ButtonImage  text="Subir foto de la autora" id="image" updateAvatar={updateAvatar} />
-          <ButtonSave form={form} setUrl={setUrl}/>
-          {url ? <a target="_blank" className="addForm__project" href={url}> Clica aquí para ver tu proyecto </a> : null}
-          
+          <div className='div-img'>
+             <ButtonImage  text="Subir foto del proyecto" id="photo" updateAvatar={updateAvatar} />
+             <ButtonImage  text="Subir foto de la autora" id="image" updateAvatar={updateAvatar} />   
+          </div>
+          <div className='div-save'>
+             <ButtonSave form={form} setUrl={setUrl}/>
+             {url ? <a target="_blank" className="addForm__project" href={url}> Clica aquí para ver tu proyecto </a> : null}
+
+          </div>
         </fieldset>
         
       </form>
