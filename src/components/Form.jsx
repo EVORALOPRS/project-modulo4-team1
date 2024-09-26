@@ -14,6 +14,7 @@ CAMBIAR NOMBRE DE LA FUNCION APP YA QUE DEJA DE HACER EL EVENTO .
 export default form;*/
 
 
+
 function Form({changeForm, updateAvatar,form, setUrl, url}) {
     const handleChangeForm = (event)=>{
         event.preventDefault();
