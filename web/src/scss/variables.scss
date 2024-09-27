@@ -43,6 +43,7 @@ fieldset {
   :root {
     font: var(--font-normal); /* font-size: 10px; */
     color: var(--color-white);
+   
   }
   
   @media screen and (min-width: 420px) {
@@ -53,12 +54,14 @@ fieldset {
   
   @media screen and (min-width: 560px) {
     :root {
-      font-size: 14px;
+      font-size: 20px;
     }
   }
   .container {
     padding: 22px 22px 0 22px;
     background-color: var(--color-dark);
+    min-height: 100vh;
+    
   }
   
   
@@ -99,3 +102,5 @@ fieldset {
     font-size: 1.6rem;
     
   }
+  
+  

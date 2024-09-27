@@ -71,6 +71,11 @@
             background-position: center;
             background-size: cover;
             margin-bottom: 0.8rem;
+            @media (min-width: 768px){
+              width: 150px;
+              height: 150px;
+
+            }
           }
         &__job {
             margin-bottom: 0.2rem;

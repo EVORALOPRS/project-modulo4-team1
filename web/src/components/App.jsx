@@ -10,7 +10,13 @@ import {Routes, Route} from 'react-router-dom';
 import Landing from './Landing';
 import autor from '../images/avatar.webp'
 
+/* PARA LA SEMANA QUE VIENE
+1- Cuantas peticiones vamos a realizar y donde se van a realizar:
 
+-->  Fetch para datos subir con POST cada vez que se genere la URL cuando pulsemos el boton de "guardar proyecto" (pagina de la tarjeta creada).
+--> Fetcht pedir los datos almacenado en la API con GET (pagina formulario)
+se visualice todos los proyectos en la pagina principal(LADING), usaremos un USE EFFECT realizando una función y usando el método funcional de map. 
+*/
 
 function App() {
   //estados de los inputs
@@ -71,11 +77,10 @@ function App() {
       autor:"Emmelie Björklund",
       job:"Full Stack Developer",
       photo: autor,
-    }
+    },
+   
   ];
-    
-
-
+  
   const [url, setUrl] = useState("")
 
 
