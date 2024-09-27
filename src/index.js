@@ -18,7 +18,7 @@ server.listen(port, ()=>{
 //servidores de estaticos, quiero que se me renderice lo que tengo en mi index
 
 //1. guardar la ruta de lo que quiero que se me renderice y 2. accede a la ruta de la / con una funcion que ya existe en express
-const staticServerpath= './web';
+const staticServerpath= './web/docs';
 server.use(express.static(staticServerpath));
 
 //http://localhost:5001/docs/document.pdf  --> ver el documento PDF
