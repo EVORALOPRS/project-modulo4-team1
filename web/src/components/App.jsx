@@ -11,10 +11,10 @@ import Landing from './Landing';
 import autor from '../images/avatar.webp'
 
 /* PARA LA SEMANA QUE VIENE
-1- Cuantas peticiones vamos a realizar y donde se van a realizar:
+1- Cuantas peticiones(EndPoint) vamos a realizar y donde se van a realizar:
 
 -->  Fetch para datos subir con POST cada vez que se genere la URL cuando pulsemos el boton de "guardar proyecto" (pagina de la tarjeta creada).
---> Fetcht pedir los datos almacenado en la API con GET (pagina formulario)
+--> Fetch pedir los datos almacenado en la API con GET (pagina formulario)
 se visualice todos los proyectos en la pagina principal(LADING), usaremos un USE EFFECT realizando una función y usando el método funcional de map. 
 */
 
@@ -33,54 +33,7 @@ function App() {
     photo:"",
   })
 
-  const fake = [
-    {
-    name:"Elegant Workspace",
-    slogan:"Diseños Exclusivos",
-    repo:"",
-    demo:"",
-    technologies:"React JS - HTML- CSS",
-    desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-    autor:"Emmelie Björklund",
-    job:"Full Stack Developer",
-    photo: autor,
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: autor,
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: autor,
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: autor,
-    },
-   
-  ];
-  
+ 
   const [url, setUrl] = useState("")
 
 
@@ -119,7 +72,7 @@ function App() {
     <div className="container">
       <Header /> 
     <Routes>
-      <Route path="/" element={<Landing fake={fake}/>}/>
+      <Route path="/" element={<Landing/>}/>
       <Route path="/create" element={
         <main className="main">
           <SectionProject />
