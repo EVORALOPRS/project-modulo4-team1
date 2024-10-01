@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const mysql = require('mysql2/promise');
+
 
 //crear servidor
 const server= express()
-
-
 //habilito el servidor para poder hacerle peticiones externas con CORS
 server.use(cors())
 server.use(express.json({limit:"20mb"}))
@@ -14,6 +14,18 @@ const port= 5001;
 server.listen(port, ()=>{
     console.log(`Server listening at http://localhost:${port}`);
 });
+//Nos conectamos con la BD
+async function getConnectionDB(){
+  const conect = await mysql.createConnection({
+    host:"sql.freedb.tech",
+    user:"freedb_adminMolones",
+    password:"C#vRufYx9sRjG*y",
+    database:"freedb_ProjetMolones",
+  });
+  conect.connect();
+  return conect;
+}
+
 
 //servidores de estaticos, quiero que se me renderice lo que tengo en mi index
 
@@ -24,7 +36,7 @@ server.use(express.static(staticServerpath));
 //http://localhost:5001/docs/document.pdf  --> ver el documento PDF
 
 //manejar errores de rutas que no existen
-const fake = [
+/*const fake = [
     {
     name:"Elegant Workspace",
     slogan:"Diseños Exclusivos",
@@ -70,18 +82,22 @@ const fake = [
       photo: "",
     },
    
-  ];
-
-// ENDPOINT DE LA LANDING
-server.get("/proyect", (req, res)=>{
+  ];*/
+// ENDPOINT DE LA LANDING]
+server.get("/project", async (req, res)=>{
     //Buscar en una base de datos con un SELECT
-    
-    if(fake.length === 0){
+    const conex = await getConnectionDB();
+    const sql = 'SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor;';
+    const [result] = await conex.query(sql);
+    await conex.end();
+    if(result.length === 0){
         res.status(404).sendFile(path.join(__dirname, '../web/not-found.html'));
     } else {
-        res.status(202).json(fake)
-    }
-    
+        res.status(202).json({
+          success:true,
+          message: result
+        });
+    }  
 });
 
 
@@ -89,8 +105,8 @@ server.get("/proyect", (req, res)=>{
 server.post("/add",(req,res) =>{
     const newProyect = req.body //Aqui esta lo que escribe el usuario
     fake.push(newProyect); //guardamos en el array los datos del usuario, estos datos se alamacenaran en la BD (aquí tenemos que hacer un SELECT(SQL)).
-    res.json({cardURL:"//localhost:5001/123", success:true});// Esta será la ruta del proyecto que nos pintara la tarjeta. 
-
-   
+    res.json({cardURL:"//localhost:5001/123", success:true});// Esta será la ruta del proyecto que nos pintara la tarjeta.    
 });
+
+
 

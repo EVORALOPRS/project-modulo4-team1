@@ -11,14 +11,14 @@ function Landing() {
  const [dataFake, setDataFake] = useState([]);
 
   useEffect(()=>{
-    fetch ("//localhost:5001/proyect")
+    fetch ("http://localhost:5001/project")
     .then(reponse =>reponse.json())
     .then((data)=>{
       //console.log(dataFake)
       setDataFake(data);
     })
   },[]);
-
+    // Preguntar a Dayana donde esta el error, y porque no se nos pinta. 
    const infoFake = dataFake.map((item,i)=><CardPrewiev key={i}info={item}/>)
   
   
