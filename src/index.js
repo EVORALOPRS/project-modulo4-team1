@@ -36,53 +36,7 @@ server.use(express.static(staticServerpath));
 //http://localhost:5001/docs/document.pdf  --> ver el documento PDF
 
 //manejar errores de rutas que no existen
-/*const fake = [
-    {
-    name:"Elegant Workspace",
-    slogan:"Diseños Exclusivos",
-    repo:"",
-    demo:"",
-    technologies:"React JS - HTML- CSS",
-    desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-    autor:"Emmelie Björklund",
-    job:"Full Stack Developer",
-    photo: "",
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: "",
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: "",
-    },
-    {
-      name:"Elegant Workspace",
-      slogan:"Diseños Exclusivos",
-      repo:"",
-      demo:"",
-      technologies:"React JS - HTML- CSS",
-      desc:"Product Description Lorem ipsum dolor sit amet, consecteturadipiscing elit. Amet faucibus commodotellus lectus lobortis. Ultricies lacus, facilisisarcu ac mauris, laoreet sit.",
-      autor:"Emmelie Björklund",
-      job:"Full Stack Developer",
-      photo: "",
-    },
-   
-  ];*/
+
 // ENDPOINT DE LA LANDING]
 server.get("/project", async (req, res)=>{
     //Buscar en una base de datos con un SELECT
@@ -90,6 +44,7 @@ server.get("/project", async (req, res)=>{
     const sql = 'SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor;';
     const [result] = await conex.query(sql);
     await conex.end();
+    console.log(result);
     if(result.length === 0){
         res.status(404).sendFile(path.join(__dirname, '../web/not-found.html'));
     } else {
@@ -102,11 +57,41 @@ server.get("/project", async (req, res)=>{
 
 
 //ENDPOINT DEL FORMULARIO(BUTTON SAVE)
-server.post("/add",(req,res) =>{
-    const newProyect = req.body //Aqui esta lo que escribe el usuario
-    fake.push(newProyect); //guardamos en el array los datos del usuario, estos datos se alamacenaran en la BD (aquí tenemos que hacer un SELECT(SQL)).
-    res.json({cardURL:"//localhost:5001/123", success:true});// Esta será la ruta del proyecto que nos pintara la tarjeta.    
-});
 
+// modificamos el post anterior de los datos fakes, utilizando los parametros.
+
+
+server.post("/add", async(req,res) =>{
+    const body= req.body;
+    const conex= await getConnectionDB();
+    //1. Insertamos los datos de la autora para que nos genere el ID ultimo que se genere
+    const sql= "INSERT INTO `dataautor` (`autor`,`job`,`image`) values (?,?,?);"
+   
+    const [result]= await conex.query( sql, [
+      body.autor,
+      body.job,
+      body.image
+    ]);
+    //2. Creamos una variable para guardar el id ultimo de la autora llamado insertId
+    const fkAutor = result.insertId;
+    //3. Insertamos en la tabla project con los datos junto a la columna fk_autor que relaciona con la tabla de dataautor
+   const sqlproject= "INSERT INTO `dataproject` (`name`, `slogan`,`technologies`, `repo`,`demo`,`desc`,`photo`,`fk_autor`) values ( ?,?,?,?,?,?,?,?);"
+   //4.El ultimo parametro será la constante creada anteriormente con el iddel Autor 
+   const [resultProject]= await conex.query(sqlproject,[
+    body.name,
+    body.slogan,
+    body.technologies,
+    body.repo,
+    body.demo,
+    body.desc,
+    body.photo,
+    fkAutor
+   ]);
+    
+   //5. Enviamos el result con la clave-valor a button-save con la url creada que nos lleva al proyecto de esa autora en concreto
+    console.log(resultProject);
+    res.json({cardURL:`//localhost:5001/${resultProject.insertId}`, success:true});
+     
+});
 
 

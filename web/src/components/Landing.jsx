@@ -15,7 +15,7 @@ function Landing() {
     .then(reponse =>reponse.json())
     .then((data)=>{
       //console.log(dataFake)
-      setDataFake(data);
+      setDataFake(data.message);
     })
   },[]);
     // Preguntar a Dayana donde esta el error, y porque no se nos pinta. 
