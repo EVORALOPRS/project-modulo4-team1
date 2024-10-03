@@ -50,7 +50,7 @@ server.get("/project", async (req, res)=>{
     const sql = 'SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor;';
     const [result] = await conex.query(sql);
     await conex.end();
-    console.log(result);
+   
     if(result.length === 0){
         res.status(404).sendFile(path.join(__dirname, '../web/not-found.html'));
     } else {
@@ -95,19 +95,19 @@ server.post("/add", async(req,res) =>{
    ]);
     
    //5. Enviamos el result con la clave-valor a button-save con la url creada que nos lleva al proyecto de esa autora en concreto
-    console.log(resultProject);
-    res.json({cardURL:`//localhost:5001/${resultProject.insertId}`, success:true});
+    
+    res.json({cardURL:`//localhost:5001/oneproject/${resultProject.insertId}`, success:true});
      
 });
 //hacer el endpoint de servidor dinamico
 
-server.get("/:idPro", async (req, res)=>{
+server.get("/oneproject/:idPro", async (req, res)=>{
   const conex= await getConnectionDB();
   const idProject= req.params.idPro;
   const sql= "SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor where idProject=?";
   const [result]= await conex.query(sql, [idProject]);
   conex.end();
-  console.log(result[0]);
+  console.log(result);
   res.render("finalCard", {finalProject: result[0]} );
 })
 
