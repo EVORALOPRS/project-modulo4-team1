@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final</title>
+</head>
+<body>
+    <section class="preview">
+        <div class="projectImage">
+          <img class="projectImage__ebook" src= "<%= finalProject.image %>" alt="" />
+        </div>
+        <div>
+            <article class="card">
+                <h2 class="card__projectTitle"><span class="card__projectTitle--text">Personal project card</span></h2>
+      
+                <div class="card__author">
+                  <div class="card__authorPhoto">
+                  <img class="card__authorPhoto" src= "<%= finalProject.photo %>" alt="" />
+      
+                  </div>
+                  <p class="card__job"> <%= finalProject.job %> </p>
+                  <h3 class="card__name"><%= finalProject.autor %></h3> 
+                </div>
+            
+                <div class="card__project">            
+                  <h3 class="card__name"><%= finalProject.name %></h3>
+                  <p class="card__slogan"><%= finalProject.slogan %></p>
+                  <h3 class="card__descriptionTitle">Product description</h3>
+                  <p class="card__description"><%= finalProject.desc %></p>
+      
+                  <div class="card__technicalInfo">
+                    <p class="card__technologies"><%= finalProject.technologies %></p>
+                
+                    <a class="icon" href="<%= finalProject.demo %>" title="Haz click para ver el proyecto online">
+                    <i class="fa-solid fa-globe emoji"></i>
+                    </a>
+                    <a class="icon" href="<%= finalProject.repo %>" title="Haz click para ver el código del proyecto"> <i class="fa-brands fa-github emoji"></i>
+                    </a>
+                  </div>
+                </div>
+              </article>    
+          </div>
+      </section>
+
+</body>
+</html>
