@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500&family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Proyecto Final</title>
 </head>
 <body>
     <section class="preview">
         <div class="projectImage">
-          <img class="projectImage__ebook" src= "<%= finalProject.image %>" alt="" />
+          <img class="ebook" src= "<%= finalProject.photo %>" alt="" />
         </div>
-        <div>
-            <article class="card">
-                <h2 class="card__projectTitle"><span class="card__projectTitle--text">Personal project card</span></h2>
+        <div class="card">
+                <h2 class="projectTitle"><span class="projectTitle--text">Personal project card</span></h2>
       
-                <div class="card__author">
-                  <div class="card__authorPhoto">
-                  <img class="card__authorPhoto" src= "<%= finalProject.photo %>" alt="" />
+                <div class="author">
+                  <div class="authorPhoto">
+                  <img class="authorPhoto" src= "<%= finalProject.image %>" alt="" />
       
                   </div>
-                  <p class="card__job"> <%= finalProject.job %> </p>
-                  <h3 class="card__name"><%= finalProject.autor %></h3> 
+                  <p class="job"> <%= finalProject.job %> </p>
+                  <h3 class="name"><%= finalProject.autor %></h3> 
                 </div>
             
-                <div class="card__project">            
-                  <h3 class="card__name"><%= finalProject.name %></h3>
-                  <p class="card__slogan"><%= finalProject.slogan %></p>
-                  <h3 class="card__descriptionTitle">Product description</h3>
-                  <p class="card__description"><%= finalProject.desc %></p>
+                <div class="project">            
+                  <h3 class="name"><%= finalProject.name %></h3>
+                  <p class="slogan"><%= finalProject.slogan %></p>
+                  <h3 class="descriptionTitle">Product description</h3>
+                  <p class="descript"><%= finalProject.desc %></p>
       
-                  <div class="card__technicalInfo">
-                    <p class="card__technologies"><%= finalProject.technologies %></p>
+                  <div class="technicalInfo">
+                    <p class="technologies"><%= finalProject.technologies %></p>
                 
                     <a class="icon" href="<%= finalProject.demo %>" title="Haz click para ver el proyecto online">
                     <i class="fa-solid fa-globe emoji"></i>
@@ -39,7 +44,7 @@
                     </a>
                   </div>
                 </div>
-              </article>    
+                
           </div>
       </section>
 

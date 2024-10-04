@@ -8,7 +8,7 @@ const mysql = require('mysql2/promise');
 const server= express()
 //habilito el servidor para poder hacerle peticiones externas con CORS
 server.use(cors())
-server.use(express.json({limit:"20mb"}));
+server.use(express.json({limit:"100mb"}));
 server.set('view engine', 'ejs'); //importamos ejs
 //definir el puerto de conexión
 const port= 5001;
@@ -33,11 +33,7 @@ async function getConnectionDB(){
 }
 
 
-//servidores de estaticos, quiero que se me renderice lo que tengo en mi index
 
-//1. guardar la ruta de lo que quiero que se me renderice y 2. accede a la ruta de la / con una funcion que ya existe en express
-const staticServerpath= './src/public-react';
-server.use(express.static(staticServerpath));
 
 //http://localhost:5001/docs/document.pdf  --> ver el documento PDF
 
@@ -47,7 +43,7 @@ server.use(express.static(staticServerpath));
 server.get("/project", async (req, res)=>{
     //Buscar en una base de datos con un SELECT
     const conex = await getConnectionDB();
-    const sql = 'SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor;';
+    const sql = 'SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.fk_autor= dataautor.idAutor;';
     const [result] = await conex.query(sql);
     await conex.end();
    
@@ -104,16 +100,36 @@ server.post("/add", async(req,res) =>{
 server.get("/oneproject/:idPro", async (req, res)=>{
   const conex= await getConnectionDB();
   const idProject= req.params.idPro;
-  const sql= "SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.idProject= dataautor.idAutor where idProject=?";
+  const sql= "SELECT * FROM `dataproject` JOIN `dataautor` ON dataproject.fk_autor= dataautor.idAutor where idProject=?";
   const [result]= await conex.query(sql, [idProject]);
   conex.end();
   console.log(result);
   res.render("finalCard", {finalProject: result[0]} );
+});
+
+//hacer el endpoint de eliminar tarjetas
+
+server.delete("/delete/:idProject/:idAutor", async (req, res)=>{
+  const conex= await getConnectionDB();
+  const idProject = req.params.idProject;
+  const idAutor= req.params.idAutor;
+  const sqlDelete= "delete from `dataproject` where idProject=? ";
+  const [resultProject]= await conex.query(sqlDelete, [idProject]);
+  const sqlDeleteAutor= "delete from `dataautor` where idAutor=?";
+  const [resultAutor]= await conex.query (sqlDeleteAutor, [idAutor]);
+  conex.end();
+  
+  res.status(200).json({succes: true, message: "El proyecto se ha eliminado correctamente"});
+
 })
 
+//servidores de estaticos, quiero que se me renderice lo que tengo en mi index
+
+//1. guardar la ruta de lo que quiero que se me renderice y 2. accede a la ruta de la / con una funcion que ya existe en express
+const staticServerpath= './src/public-react';
+server.use(express.static(staticServerpath));
 
 
-
-
-
+const staticServerCss= './src/css';
+server.use(express.static(staticServerCss));
 
