@@ -33,8 +33,6 @@ async function getConnectionDB(){
 }
 
 
-
-
 //http://localhost:5001/docs/document.pdf  --> ver el documento PDF
 
 //manejar errores de rutas que no existen

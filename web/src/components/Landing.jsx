@@ -19,7 +19,7 @@ function Landing() {
     })
   },[]);
     // Preguntar a Dayana donde esta el error, y porque no se nos pinta. 
-   const infoFake = dataFake.map((item,i)=><CardPrewiev key={i}info={item}/>)
+   const infoFake = dataFake.map((item,i)=><CardPrewiev deleteProject={true} key={i} info={item}/>)
   
   
 
@@ -30,7 +30,7 @@ function Landing() {
         <p className="container__text">Escaparate en línea para recoger ideas a través de la tecnología</p>
         <Link className="create" to='/create'>Nuevo proyecto</Link>
       </div>
-      <div className="cardprewiev"> 
+      <div className="cardprewiev" > 
        {infoFake} 
       </div>  
     </main>

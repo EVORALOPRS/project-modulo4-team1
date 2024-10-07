@@ -5,7 +5,7 @@ import CardPrewiev from './CardPrewiev';
 function Card({data}){
 
     return(
-        <section className="preview">
+      <section className="preview">
         <div className="projectImage">
           <img className="projectImage__ebook" src={data.photo || ebook } alt="" />
         </div>

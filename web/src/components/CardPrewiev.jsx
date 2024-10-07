@@ -2,10 +2,13 @@
 import autor from '../images/avatar.webp'
 
 
-function CardPrewiev({info}) {
+function CardPrewiev({info, deleteProject}) {
   return (
     <div>
+      {/* Hacer un evento para eliminar el proyecto,  fecth que recoja la url del endpoint DELETE */}
       <article className="card">
+         {deleteProject ? <span >X</span> : null}
+          
           <h2 className="card__projectTitle"><span className="card__projectTitle--text">Personal project card</span></h2>
 
           <div className="card__author">
