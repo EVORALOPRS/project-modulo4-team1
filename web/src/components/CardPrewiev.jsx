@@ -2,12 +2,30 @@
 import autor from '../images/avatar.webp'
 
 
-function CardPrewiev({info, deleteProject}) {
+function CardPrewiev({info, deleteProject, setIdDelete}) {
+  
+  const handleChanges=(ev)=>{
+    //const idProject = ev.target.id
+    console.log(info)
+    fetch (`http://localhost:5001/delete/${info.idProject}/${info.idAutor}`,{
+      method:'DELETE',
+      header: {'content-type': 'application/json'},
+    })
+    .then(reponse =>reponse.json())
+    .then((data)=>{
+      //console.log(data.idProject)
+      setIdDelete(data.idProject);
+    })
+    
+    
+    
+  }
+
   return (
     <div>
       {/* Hacer un evento para eliminar el proyecto,  fecth que recoja la url del endpoint DELETE */}
       <article className="card">
-         {deleteProject ? <span >X</span> : null}
+         {deleteProject ? <span onClick={handleChanges}>X</span> : null}
           
           <h2 className="card__projectTitle"><span className="card__projectTitle--text">Personal project card</span></h2>
 

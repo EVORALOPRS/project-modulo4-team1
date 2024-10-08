@@ -117,7 +117,7 @@ server.delete("/delete/:idProject/:idAutor", async (req, res)=>{
   const [resultAutor]= await conex.query (sqlDeleteAutor, [idAutor]);
   conex.end();
   
-  res.status(200).json({succes: true, message: "El proyecto se ha eliminado correctamente"});
+  res.status(200).json({succes: true, message: "El proyecto se ha eliminado correctamente", idProject: idProject});
 
 })
 

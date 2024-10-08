@@ -9,17 +9,18 @@ function Landing() {
 /* Hacemos una variable de estado para recoger los datos que necesitamos */
 
  const [dataFake, setDataFake] = useState([]);
+ const [idDelete, setIdDelete] = useState (null);
 
   useEffect(()=>{
-    fetch ("https://proyectos-molones-slg0.onrender.com/project")
+    fetch ("http://localhost:5001/project")
     .then(reponse =>reponse.json())
     .then((data)=>{
       //console.log(dataFake)
       setDataFake(data.message);
     })
-  },[]);
+  },[idDelete]);
     // Preguntar a Dayana donde esta el error, y porque no se nos pinta. 
-   const infoFake = dataFake.map((item,i)=><CardPrewiev deleteProject={true} key={i} info={item}/>)
+   const infoFake = dataFake.map((item,i)=><CardPrewiev deleteProject={true} key={i} info={item} setIdDelete={setIdDelete}/>)
   
   
 
