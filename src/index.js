@@ -11,7 +11,7 @@ server.use(cors())
 server.use(express.json({limit:"100mb"}));
 server.set('view engine', 'ejs'); //importamos ejs
 //definir el puerto de conexión
-const port= 5001;
+const port = process.env.PORT || 5001;
 server.listen(port, ()=>{
     console.log(`Server listening at http://localhost:${port}`);
 });
