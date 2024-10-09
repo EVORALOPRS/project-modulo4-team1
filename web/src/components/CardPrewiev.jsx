@@ -7,7 +7,7 @@ function CardPrewiev({info, deleteProject, setIdDelete}) {
   const handleChanges=(ev)=>{
     //const idProject = ev.target.id
     console.log(info)
-    fetch (`http://localhost:5001/delete/${info.idProject}/${info.idAutor}`,{
+    fetch (`https://proyectos-molones-slg0.onrender.com/delete/${info.idProject}/${info.idAutor}`,{
       method:'DELETE',
       header: {'content-type': 'application/json'},
     })
@@ -25,7 +25,7 @@ function CardPrewiev({info, deleteProject, setIdDelete}) {
     <div>
       {/* Hacer un evento para eliminar el proyecto,  fecth que recoja la url del endpoint DELETE */}
       <article className="card">
-         {deleteProject ? <span onClick={handleChanges}>X</span> : null}
+         {deleteProject ? <span onClick={handleChanges} className="Delete">X</span> : null}
           
           <h2 className="card__projectTitle"><span className="card__projectTitle--text">Personal project card</span></h2>
 

@@ -19,10 +19,10 @@ server.listen(port, ()=>{
 async function getConnectionDB(){
   try {
     const conect = await mysql.createConnection({
-      host:"sql.freedb.tech",
-      user:"freedb_adminMolones",
-      password:"C#vRufYx9sRjG*y",
-      database:"freedb_ProjetMolones",
+      host: process.env.HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DATABASE,
     });
     conect.connect();
     return conect;

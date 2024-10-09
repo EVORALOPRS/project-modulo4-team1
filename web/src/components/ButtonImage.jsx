@@ -34,11 +34,6 @@ function ButtonImage(props){
           props.updateAvatar(props.id,image);
         };
 
-
-
-
-
-
     return(
         <>
         <label  className="button"> {props.text} 

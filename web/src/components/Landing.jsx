@@ -12,7 +12,7 @@ function Landing() {
  const [idDelete, setIdDelete] = useState (null);
 
   useEffect(()=>{
-    fetch ("http://localhost:5001/project")
+    fetch ("https://proyectos-molones-slg0.onrender.com/project")
     .then(reponse =>reponse.json())
     .then((data)=>{
       //console.log(dataFake)
