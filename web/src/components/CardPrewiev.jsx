@@ -4,7 +4,7 @@ import autor from '../images/avatar.webp'
 
 function CardPrewiev({info, deleteProject, setIdDelete}) {
   
-  const handleChanges=(ev)=>{
+  const handleChanges=()=>{
     //const idProject = ev.target.id
     console.log(info)
     fetch (`https://proyectos-molones-slg0.onrender.com/delete/${info.idProject}/${info.idAutor}`,{
